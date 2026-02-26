@@ -1,4 +1,6 @@
 import sys
+import os
+import platform
 import constants
 
 def get_user_input():
@@ -23,9 +25,11 @@ def main():
     tries = 3
 
     while True:
-        if state == word:
-            print("You win! 🎉")
-            break
+        # Check the platform (operating system)
+        if platform.system() == "Windows":
+            os.system('cls')
+        else:  # Assumes Linux/macOS/Unix
+            os.system('clear')
 
         print(state)
         print(f"Tries left: {tries}")
@@ -42,14 +46,15 @@ def main():
                 for index, char in enumerate(word):
                     if char == guess:
                         state = state[:index] + char + state[index + 1:]
+                if state == word:
+                    print("You win! 🎉")
+                    break
             else:
                 if tries == 1:
                     print("You lose. Try again")
                     break
                 tries -= 1
         
-        print("###########################")
-
     
 if __name__ == "__main__":
     main()
