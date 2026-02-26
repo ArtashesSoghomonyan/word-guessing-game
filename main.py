@@ -1,7 +1,7 @@
 import sys
-import os
 import platform
 import constants
+import subprocess
 
 def get_user_input():
     try:
@@ -16,6 +16,11 @@ def get_user_input():
         print("\nYou have interrupted the game.")
         sys.exit(1)
 
+def clear_the_console():
+    if platform.system() == "Windows":
+        subprocess.run("cls")
+    else:  # Assumes Linux/macOS/Unix
+        subprocess.run("clear")
 
 def main():
     print("Word guessing game!")
@@ -25,11 +30,7 @@ def main():
     tries = 3
 
     while True:
-        # Check the platform (operating system)
-        if platform.system() == "Windows":
-            os.system('cls')
-        else:  # Assumes Linux/macOS/Unix
-            os.system('clear')
+        clear_the_console()
 
         print(state)
         print(f"Tries left: {tries}")
