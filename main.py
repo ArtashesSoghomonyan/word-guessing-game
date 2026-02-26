@@ -17,14 +17,28 @@ def get_user_input():
 
 def main():
     print("Word guessing game!")
-    
+
+    word = "guess"
+    state = "_" * len(word)
+
     while True:
+        print(state)
+
         guess = get_user_input()
-        
+
         if guess == None:
             print("Invalid input!")
         else:
-            print(guess)
+            # Replacing state with guessed character
+            # for example _____ -> __e__ (word = guess) 
+
+            if guess in word:
+                for index, char in enumerate(word):
+                    if char == guess:
+                        state = state[:index] + char + state[index + 1:]
+        
+        print("###########################")
+
     
 if __name__ == "__main__":
     main()
