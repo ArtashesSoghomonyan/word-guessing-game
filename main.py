@@ -43,6 +43,7 @@ def main():
             else:
                 if tries == 1:
                     print("You lose. Try again")
+                    print(f"The word was: {word}")
                     break
                 tries -= 1
     
