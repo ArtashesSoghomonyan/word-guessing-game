@@ -3,13 +3,15 @@ import random
 import platform
 import subprocess
 
-import constants
+import inquirer
+
+from constants import *
 
 def get_user_input():
     try:
         guess = input("Enter your guess: ")
 
-        if guess.upper() not in constants.ALPHABET:
+        if guess.upper() not in ALPHABET:
             return None
         else:
             return guess.upper()
@@ -25,15 +27,22 @@ def clear_the_console():
         subprocess.run("clear")
 
 def main():
-    print("Word guessing game!")
+    print("---Word guessing game!---")
 
-    word = "TWO_WORDS"
+    category = inquirer.prompt([inquirer.List(
+        "value",
+        message="Pick a category for the word",
+        choices=CATEGORIES,
+    )])
+
+    word = random.choice(WORDS[category["value"]])
     state = "_" * len(word)
     tries = 3
 
     while True:
         clear_the_console()
 
+        print(f"Category: {category["value"]}")
         print(state)
         print(f"Tries left: {tries}")
 
@@ -57,7 +66,6 @@ def main():
                     print("You lose. Try again")
                     break
                 tries -= 1
-        
     
 if __name__ == "__main__":
     main()

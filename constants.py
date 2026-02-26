@@ -1,7 +1,7 @@
 ALPHABET = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 WORDS = {
-    "FRUITS": [
+    "Fruits": [
         "APPLE",
         "WATERMELON",
         "BANANA",
@@ -79,3 +79,5 @@ WORDS = {
         "ITALY",
     ],
 }
+
+CATEGORIES = list(WORDS.keys())
