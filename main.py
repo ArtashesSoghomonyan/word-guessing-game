@@ -1,13 +1,11 @@
 import sys
 import constants
 
-ALPHABET = list("abcdefghijklmnopqrstuvwxyz")
-
 def get_user_input():
     try:
         guess = input("Enter your guess: ")
 
-        if guess.lower() not in ALPHABET:
+        if guess.lower() not in constants.ALPHABET:
             return None
         else:
             return guess
