@@ -1,16 +1,18 @@
 import sys
+import random
 import platform
-import constants
 import subprocess
+
+import constants
 
 def get_user_input():
     try:
         guess = input("Enter your guess: ")
 
-        if guess.lower() not in constants.ALPHABET:
+        if guess.upper() not in constants.ALPHABET:
             return None
         else:
-            return guess
+            return guess.upper()
 
     except KeyboardInterrupt:
         print("\nYou have interrupted the game.")
@@ -25,7 +27,7 @@ def clear_the_console():
 def main():
     print("Word guessing game!")
 
-    word = "guess"
+    word = "TWO_WORDS"
     state = "_" * len(word)
     tries = 3
 
