@@ -20,9 +20,14 @@ def main():
 
     word = "guess"
     state = "_" * len(word)
+    tries = 3
 
     while True:
+        if state == word:
+            print("You win! 🎉")
+
         print(state)
+        print(f"Tries left: {tries}")
 
         guess = get_user_input()
 
@@ -36,6 +41,11 @@ def main():
                 for index, char in enumerate(word):
                     if char == guess:
                         state = state[:index] + char + state[index + 1:]
+            else:
+                if tries == 1:
+                    print("You lose. Try again")
+                    sys.exit(1)
+                tries -= 1
         
         print("###########################")
 
