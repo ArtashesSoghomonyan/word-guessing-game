@@ -25,6 +25,7 @@ def main():
     while True:
         if state == word:
             print("You win! 🎉")
+            break
 
         print(state)
         print(f"Tries left: {tries}")
@@ -44,7 +45,7 @@ def main():
             else:
                 if tries == 1:
                     print("You lose. Try again")
-                    sys.exit(1)
+                    break
                 tries -= 1
         
         print("###########################")
