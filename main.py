@@ -1,27 +1,22 @@
 import random
 
-import inquirer
-
 from constants import *
 from utils import *
+from prompts import *
 
 def main():
     print("---Word guessing game!---")
 
-    category = inquirer.prompt([inquirer.List(
-        "value",
-        message="Pick a category for the word",
-        choices=CATEGORIES,
-    )])
+    category = choice_prompt("Pick a category for the word", CATEGORIES)
 
-    word = random.choice(WORDS[category["value"]])
+    word = random.choice(WORDS[category])
     state = "_" * len(word)
     tries = 3
 
     while True:
         clear_the_console()
 
-        print(f"Category: {category["value"]}")
+        print(f"Category: {category}")
         print(state)
         print(f"Tries left: {tries}")
 
