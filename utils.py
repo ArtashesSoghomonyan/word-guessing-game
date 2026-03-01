@@ -53,11 +53,11 @@ def session():
                         state = state[:index] + char + state[index + 1:]
                 if state == word:
                     print("You win! 🎉")
-                    return True
+                    return 1
             else:
                 if tries == 1:
                     print("You lose. Try again")
                     print(f"The word was: {word}")
-                    return False
+                    return 0
                 tries -= 1
 
