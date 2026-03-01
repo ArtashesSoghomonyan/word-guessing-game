@@ -1,14 +1,16 @@
 import sys
+import random
 import platform
 import subprocess
 
-from constants import *
+import constants
+import prompts
 
 def get_user_input():
     try:
         guess = input("Enter your guess: ")
 
-        if guess.upper() not in ALPHABET:
+        if guess.upper() not in constants.ALPHABET:
             return None
         else:
             return guess.upper()
@@ -22,3 +24,40 @@ def clear_the_console():
         subprocess.run("cls")
     else:  # Assumes Linux/macOS/Unix
         subprocess.run("clear")
+
+def session():
+    category = prompts.choice_prompt("Pick a category for the word", constants.CATEGORIES)
+    word = random.choice(constants.WORDS[category])
+
+    state = "_" * len(word)
+    tries = 3
+
+    while True:
+        clear_the_console()
+
+        print(f"Category: {category}")
+        print(state)
+        print(f"Tries left: {tries}")
+
+        guess = get_user_input()
+
+        if guess == None:
+            print("Invalid input!")
+        else:
+            # Replacing state with guessed character
+            # for example _____ -> __e__ (word = guess)
+
+            if guess in word:
+                for index, char in enumerate(word):
+                    if char == guess:
+                        state = state[:index] + char + state[index + 1:]
+                if state == word:
+                    print("You win! 🎉")
+                    return True
+            else:
+                if tries == 1:
+                    print("You lose. Try again")
+                    print(f"The word was: {word}")
+                    return False
+                tries -= 1
+
